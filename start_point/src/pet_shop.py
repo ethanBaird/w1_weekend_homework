@@ -1,5 +1,8 @@
 # WRITE YOUR FUNCTIONS HERE
 
+from operator import truediv
+
+
 def get_pet_shop_name(pet_shop):
     pet_shop_name = pet_shop["name"]
     return pet_shop_name 
@@ -55,3 +58,8 @@ def get_customer_pet_count(customer):
 
 def add_pet_to_customer(customer, new_pet):
     customer["pets"].append(new_pet)
+
+def customer_can_afford_pet(customer, new_pet):
+    if customer["cash"] >= new_pet["price"]: return True
+        
+    
