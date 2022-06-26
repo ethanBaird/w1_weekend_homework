@@ -1,7 +1,5 @@
 # WRITE YOUR FUNCTIONS HERE
 
-from operator import truediv
-
 
 def get_pet_shop_name(pet_shop):
     pet_shop_name = pet_shop["name"]
@@ -66,12 +64,23 @@ def customer_can_afford_pet(customer, new_pet):
         return False
         
 def sell_pet_to_customer(pet_shop, pet, customer):
-    remove_pet_by_name(pet_shop, pet["name"])
-    add_pet_to_customer(customer, pet["name"])
-    increase_pets_sold(pet_shop, 1)
-    get_pets_sold(pet_shop)
-    remove_customer_cash(customer, pet["price"])
-    add_or_remove_cash(pet_shop, pet["price"])
-    
+    in_stock = False
+    for stock in pet_shop["pets"]:
+        if stock["name"] == pet:
+            in_stock = True
+        else:
+            pass
+    if in_stock == True:
+        remove_pet_by_name(pet_shop, pet)
+        add_pet_to_customer(customer, pet)
+        increase_pets_sold(pet_shop, 1)
+        get_pets_sold(pet_shop)
+        remove_customer_cash(customer, pet["price"])
+        add_or_remove_cash(pet_shop, pet["price"])
+    if in_stock == False:
+        pass
+
+
+
 
     
