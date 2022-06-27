@@ -1,5 +1,50 @@
 # WRITE YOUR FUNCTIONS HERE
 
+cc_pet_shop = {
+    "pets": [
+        {
+            "name": "Sir Percy",
+            "pet_type": "cat",
+            "breed": "British Shorthair",
+            "price": 500
+        },
+        {
+            "name": "King Bagdemagus",
+            "pet_type": "cat",
+            "breed": "British Shorthair",
+            "price": 500
+        },
+        {
+            "name": "Sir Lancelot",
+            "pet_type": "dog",
+            "breed": "Pomsky",
+            "price": 1000,
+        },
+        {
+            "name": "Arthur",
+            "pet_type": "dog",
+            "breed": "Husky",
+            "price": 900,
+        },
+        {
+            "name": "Tristan",
+            "pet_type": "cat",
+            "breed": "Basset Hound",
+            "price": 800,
+        },
+        {
+            "name": "Merlin",
+            "pet_type": "cat",
+            "breed": "Egyptian Mau",
+            "price": 1500,
+        }
+    ],
+    "admin": {
+        "total_cash": 1000,
+        "pets_sold": 0,
+    },
+    "name": "Camelot of Pets"
+}
 
 def get_pet_shop_name(pet_shop):
     pet_shop_name = pet_shop["name"]
@@ -38,10 +83,8 @@ def find_pet_by_name(pet_shop, pet_name):
             return pet
 
 def remove_pet_by_name(pet_shop, pet_name):
-    for pet in pet_shop["pets"]:
-        if pet["name"] == pet_name:
-            pet_shop["pets"].remove(pet)
-# could have used find_pet_by_name() here.
+    pet_to_remove = find_pet_by_name(pet_shop, pet_name)
+    pet_shop["pets"].remove(pet_to_remove)
 
 def add_pet_to_stock(pet_shop, new_pet):
     pet_shop["pets"].append(new_pet)
@@ -65,28 +108,8 @@ def customer_can_afford_pet(customer, new_pet):
         return False
         
 def sell_pet_to_customer(pet_shop, pet, customer):
-    # in test where pet does not exist pet == None
-    # therefore pet will not operate as an argument in any of the functions we are attempting to run
-    ### first solution
-    # in_stock = False
-    # for stock in pet_shop["pets"]:
-    #     if stock == pet:
-    #         in_stock = True
-    #     else:
-    #         pass
-    # sufficient_funds = customer_can_afford_pet(customer, pet)
-    # if in_stock == True and sufficient_funds == True:
-    #     remove_pet_by_name(pet_shop, pet)
-    #     add_pet_to_customer(customer, pet)
-    #     increase_pets_sold(pet_shop, 1)
-    #     get_pets_sold(pet_shop)
-    #     remove_customer_cash(customer, pet["price"])
-    #     add_or_remove_cash(pet_shop, pet["price"])
-    # if in_stock == False or sufficient_funds == False:
-    #     pass
-    ### second solution (which works)
     if pet != None and customer_can_afford_pet(customer, pet):
-        remove_pet_by_name(pet_shop, pet)
+        remove_pet_by_name(pet_shop, pet["name"])
         add_pet_to_customer(customer, pet)
         increase_pets_sold(pet_shop, 1)
         get_pets_sold(pet_shop)
