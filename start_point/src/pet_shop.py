@@ -41,6 +41,7 @@ def remove_pet_by_name(pet_shop, pet_name):
     for pet in pet_shop["pets"]:
         if pet["name"] == pet_name:
             pet_shop["pets"].remove(pet)
+# could have used find_pet_by_name() here.
 
 def add_pet_to_stock(pet_shop, new_pet):
     pet_shop["pets"].append(new_pet)
@@ -64,22 +65,34 @@ def customer_can_afford_pet(customer, new_pet):
         return False
         
 def sell_pet_to_customer(pet_shop, pet, customer):
-    in_stock = False
-    for stock in pet_shop["pets"]:
-        if stock == pet:
-            in_stock = True
-        else:
-            pass
+    # in test where pet does not exist pet == None
+    # therefore pet will not operate as an argument in any of the functions we are attempting to run
+    ### first solution
+    # in_stock = False
+    # for stock in pet_shop["pets"]:
+    #     if stock == pet:
+    #         in_stock = True
+    #     else:
+    #         pass
     # sufficient_funds = customer_can_afford_pet(customer, pet)
-    if in_stock == True: #and sufficient_funds == True:
+    # if in_stock == True and sufficient_funds == True:
+    #     remove_pet_by_name(pet_shop, pet)
+    #     add_pet_to_customer(customer, pet)
+    #     increase_pets_sold(pet_shop, 1)
+    #     get_pets_sold(pet_shop)
+    #     remove_customer_cash(customer, pet["price"])
+    #     add_or_remove_cash(pet_shop, pet["price"])
+    # if in_stock == False or sufficient_funds == False:
+    #     pass
+    ### second solution (which works)
+    if pet != None and customer_can_afford_pet(customer, pet):
         remove_pet_by_name(pet_shop, pet)
         add_pet_to_customer(customer, pet)
         increase_pets_sold(pet_shop, 1)
         get_pets_sold(pet_shop)
         remove_customer_cash(customer, pet["price"])
         add_or_remove_cash(pet_shop, pet["price"])
-    if in_stock == False: # or sufficient_funds == False:
-        pass
+
 
 
 

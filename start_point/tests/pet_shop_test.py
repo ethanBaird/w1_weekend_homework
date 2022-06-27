@@ -236,7 +236,7 @@ class TestPetShop(unittest.TestCase):
         self.assertEqual(1000, get_total_cash(self.cc_pet_shop))
 
     # test 23
-    @unittest.skip("delete this line to run the test")
+    # @unittest.skip("delete this line to run the test")
     def test_sell_pet_to_customer__insufficient_funds(self):
         customer = self.customers[1]
         pet = find_pet_by_name(self.cc_pet_shop,"Arthur")
